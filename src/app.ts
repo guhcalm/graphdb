@@ -27,7 +27,7 @@ const Graph = (adjacencyList: AdjacencyList= new Map) => <const>{
       relationships: new Map()
     })
   },
-  addRelationship ({ type, identity = randomUUID() }: Metadata, target: Metadata, data?: any) {
+  addRelationhip ({ type, identity = randomUUID() }: Metadata, target: Metadata, data?: any) {
     const { relationships } = adjacencyList.get(target.type)?.get(target.identity)!
     !relationships.get(type) && relationships.set(type, new Map())
     relationships.get(type)?.set(identity, <Relationship> {
