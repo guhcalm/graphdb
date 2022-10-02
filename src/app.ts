@@ -48,4 +48,8 @@ const createAdjacencyList = (adjacencyList = <AdjacencyList>{}) => <const>{
   }
 }
 
-console.log(createAdjacencyList().get())
+const seedGraph = createAdjacencyList()
+Object.entries(seed).forEach(([ type, datas ]) => 
+  datas.forEach(data => seedGraph.addEntity(type, data, data))
+)
+console.log(seedGraph.get())
