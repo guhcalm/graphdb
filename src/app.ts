@@ -12,44 +12,36 @@ type Relationship = {
 type Entity = {
   metadata: Metadata
   data: any
-  relationships: {
-    [relationshipType: string]: {
-      [relationshipIdentity: string]: Relationship
-    }
-  }
+  relationships: Map<string, Map<string, Relationship>>
 }
 
-type AdjacencyList = {
-  [entityType: string]: {
-    [entityIdentity: string]: Entity
-  }
-}
+type AdjacencyList = Map<string, Map<string, Entity>>
 
-const createAdjacencyList = (adjacencyList = <AdjacencyList>{}) => <const>{
+const Graph = (adjacencyList: AdjacencyList= new Map) => <const>{
   get: () => adjacencyList,
   addEntity (type: string, data: any, identity = randomUUID()) {
-    const entity: Entity = { 
+    !adjacencyList.get(type) && adjacencyList.set(type, new Map())
+    adjacencyList.get(type)?.set(identity, <Entity> { 
       metadata: { type, identity },
       data,
-      relationships: {}
-    }
-    adjacencyList[type] = { ... adjacencyList[type], [identity]: entity }
+      relationships: new Map()
+    })
   },
   addRelationship ({ type, identity = randomUUID() }: Metadata, target: Metadata, data?: any) {
-    const relationship: Relationship = {
+    const { relationships } = adjacencyList.get(target.type)?.get(target.identity)!
+    !relationships.get(type) && relationships.set(type, new Map())
+    relationships.get(type)?.set(identity, <Relationship> {
       metadata: { type, identity },
       ...(data && { data }),
       target
-    }
-    adjacencyList[target.type][target.identity].relationships[type] = {
-      ... adjacencyList[target.type][target.identity].relationships[type],
-      [identity]: relationship
-    }
+    })
   }
 }
 
-const seedGraph = createAdjacencyList()
-Object.entries(seed).forEach(([ type, datas ]) => 
-  datas.forEach(data => seedGraph.addEntity(type, data, data))
-)
-console.log(seedGraph.get())
+{
+  const seedGraph = Graph()
+  Object.entries(seed).forEach(([ type, datas ]) => 
+    datas.forEach(data => seedGraph.addEntity(type, data, data))
+  )
+  console.log(seedGraph.get())
+}
