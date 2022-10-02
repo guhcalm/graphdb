@@ -1,0 +1,93 @@
+Arguments: 
+  C:\Users\guhca\scoop\apps\nvm\current\nodejs\nodejs\node.exe C:\Users\guhca\scoop\apps\nvm\current\nodejs\nodejs\node_modules\yarn\bin\yarn.js init
+
+PATH: 
+  C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\dotnet\;C:\Program Files\PowerShell\7\;C:\Program Files\nodejs\;C:\Users\guhca\scoop\apps\oh-my-posh\current\bin;C:\Users\guhca\scoop\apps\nvm\current\nodejs\nodejs;C:\Users\guhca\scoop\shims;C:\Users\guhca\AppData\Local\Microsoft\WindowsApps;C:\Users\guhca\AppData\Local\Programs\Git\cmd;C:\Users\guhca\AppData\Local\Programs\oh-my-posh\bin;C:\Users\guhca\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\guhca\AppData\Roaming\npm
+
+Yarn version: 
+  1.22.18
+
+Node version: 
+  18.1.0
+
+Platform: 
+  win32 x64
+
+Trace: 
+  Error: canceled
+      at Interface.<anonymous> (C:\Users\guhca\scoop\persist\nvm\nodejs\v18.1.0\node_modules\yarn\lib\cli.js:137143:13)
+      at Interface.emit (node:events:527:28)
+      at [_ttyWrite] [as _ttyWrite] (node:internal/readline/interface:1123:18)
+      at ReadStream.onkeypress (node:internal/readline/interface:272:20)
+      at ReadStream.emit (node:events:527:28)
+      at emitKeys (node:internal/readline/utils:358:14)
+      at emitKeys.next (<anonymous>)
+      at ReadStream.onData (node:internal/readline/emitKeypressEvents:64:36)
+      at ReadStream.emit (node:events:527:28)
+      at addChunk (node:internal/streams/readable:324:12)
+
+npm manifest: 
+  {
+    "name": "tese",
+    "version": "1.0.0",
+    "description": "",
+    "main": "src/app.ts",
+    "scripts": {
+      "dev": "nodemon",
+      "lint": "eslint --fix \"src/**/*\""
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "devDependencies": {
+      "@types/node": "^18.7.23",
+      "@typescript-eslint/eslint-plugin": "^5.38.1",
+      "eslint": "^8.24.0",
+      "eslint-config-prettier": "^8.5.0",
+      "eslint-config-standard-with-typescript": "^23.0.0",
+      "eslint-plugin-import": "^2.26.0",
+      "eslint-plugin-n": "^15.3.0",
+      "eslint-plugin-prettier": "^4.2.1",
+      "eslint-plugin-promise": "^6.0.1",
+      "nodemon": "^2.0.20",
+      "prettier": "^2.7.1",
+      "ts-node": "^10.9.1",
+      "typescript": "^4.8.4"
+    },
+    "prettier": {
+      "arrowParens": "avoid",
+      "bracketSpacing": true,
+      "tabWidth": 2,
+      "printWidth": 120,
+      "insertPragma": false,
+      "semi": false,
+      "singleQuote": false,
+      "trailingComma": "none"
+    },
+    "eslintConfig": {
+      "env": {
+        "browser": true,
+        "es2021": true,
+        "node": true,
+        "jest": true
+      },
+      "extends": [
+        "standard-with-typescript",
+        "plugin:prettier/recommended"
+      ],
+      "plugins": [
+        "prettier"
+      ],
+      "parserOptions": {
+        "ecmaVersion": "latest",
+        "sourceType": "module"
+      },
+      "rules": {}
+    }
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile
