@@ -1,7 +1,7 @@
 {
   "name": "tese",
   "version": "1.0.0",
-  "main": "src/app.ts",
+  "main": "src/_app.ts",
   "scripts": {
     "dev": "nodemon",
     "lint": "eslint --fix \"src/**/*\""

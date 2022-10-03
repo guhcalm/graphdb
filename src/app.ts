@@ -1,4 +1,12 @@
+import { readFileSync } from "node:fs"
 import Graph from "./Graph"
+
+type item = string
+type line = item[]
+type CSV = line[]
+
+const data = readFileSync("src/RESPOSTAS.csv").toString().split("\n").map(line => line.split(";"))
+console.log(data[0])
 
 export const
   FAIXAS_ETARIAS = <const> ["18 a 40", "50+"],
@@ -211,27 +219,29 @@ export const
     "BODEGA/ BAR/ BOTECO ... um lugar pequeno, com um balcão, onde os homens costumam ir beber____ (cf. item 182) e onde também se pode comprar alguma outra coisa?"
   ]
 
-export type Participante = { 
-  nome: string
-  faixaEtaria: typeof FAIXAS_ETARIAS[number]
-  escolaridade: typeof ESCOLARIDADES[number]
-  sexo: typeof SEXOS[number]
-  naturalidade: typeof NATURALIDADES[number]
+export type Entities = {
+  Participante: { 
+    nome: string
+    faixaEtaria: typeof FAIXAS_ETARIAS[number]
+    escolaridade: typeof ESCOLARIDADES[number]
+    sexo: typeof SEXOS[number]
+    naturalidade: typeof NATURALIDADES[number]
+  }
+  Zona: typeof ZONAS[number]
+  Palavra: string
+  Questionamento: typeof QUESTIONAMENTOS[number]
 }
-export type Zona = typeof ZONAS[number]
-export type Palavra = string
-export type Questionamento = typeof QUESTIONAMENTOS[number]
 
 export type Relationships = {
-  LOCALIZADO_EM: { origin: Participante; target: Zona }
-  RESPONDEU_COM: { origin: Participante; target: Palavra}
-  RESPOSTA_DE: { origin: Palavra; target: Questionamento }
-  RESPONDIDO_COM: { origin: Questionamento; target: Palavra }
+  LOCALIZADO_EM: { origin: Entities["Participante"]; target: Entities["Zona"] }
+  RESPONDEU_COM: { origin: Entities["Participante"]; target: Entities["Palavra"] }
+  RESPOSTA_DE: { origin: Entities["Palavra"]; target: Entities["Questionamento"] }
+  RESPONDIDO_COM: { origin: Entities["Questionamento"]; target: Entities["Palavra"] }
 }
 
 const graph = Graph()
-
+/*
 ZONAS.forEach(zona => graph.set({ type: "ZONAS", data: zona, identity: zona }))
 QUESTIONAMENTOS.forEach(quetionamento => graph.set({ type: "QUESTIONAMENTOS", data: quetionamento, identity: quetionamento }))
-
 console.log(graph.get())
+*/
